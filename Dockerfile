@@ -1,8 +1,6 @@
-FROM ubuntu:latest
-RUN apt-get update -y
-RUN apt-get install -y python3-pip python3-dev build-essential
-COPY . ./webapp
+FROM python:3
+RUN pip3 install Flask
 WORKDIR /webapp
-ENTRYPOINT [ "./webapp" ]
-CMD 'app.py'
+COPY . .
+CMD python3 app.py
 EXPOSE 80
