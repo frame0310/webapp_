@@ -1,0 +1,12 @@
+name: webappdeploy
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build_webapp:
+        runs-on: ubuntu-latest
+        steps:
+        - name: install_package
+          run : apt-get update && apt-get upgrade
