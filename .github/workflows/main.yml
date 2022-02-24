@@ -9,4 +9,4 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - name: install_package
-          run : apt-get update && apt-get upgrade
+          run : sudo apt-get update && apt-get upgrade
