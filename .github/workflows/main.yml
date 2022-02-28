@@ -23,3 +23,20 @@ jobs:
         
         - name: deploy webapp
           run: sudo docker build .
+        
+        
+    
+  push_app_to_docker_hub:
+      runs-on: ubuntu-latest
+      needs: [build_webapp]
+    
+      steps:
+      - name: git clone webapp repo
+        uses: action/checkout@v1
+    
+      - name: deploy webapp
+        run: |
+            sudo docker build .
+            docker push frame0310/webapp:tagname
+      
+      
