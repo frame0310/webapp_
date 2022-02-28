@@ -14,7 +14,7 @@ jobs:
                 apt-get install pip3 && python3
                 pip3 install Flask
         - name: git clone my repo
-          uses: action/checkout@v1
+          uses: actions/checkout@v1
           
         - name:  list current folder and packages
           run: ls -la
