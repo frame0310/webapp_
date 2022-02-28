@@ -13,9 +13,13 @@ jobs:
           run : |
                 pip3 --version
                 python3 --version
+                pip3 inastall Flask
                 
         - name: git clone my repo
           uses: actions/checkout@v1
           
         - name:  list current folder and packages
           run: ls -la
+        
+        - name: start webapp
+          run: python3 app.py
