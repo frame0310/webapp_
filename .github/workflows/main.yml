@@ -32,7 +32,7 @@ jobs:
     
       steps:
       - name: git clone webapp repo
-        uses: action/checkout@v1
+        uses: actions/checkout@v1
     
       - name: deploy webapp
         run: |
