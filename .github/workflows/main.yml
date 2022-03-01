@@ -41,9 +41,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     
       - name: build and push webapp
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
-          context: .
-          file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webapp
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webapp:latest
