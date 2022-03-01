@@ -33,10 +33,17 @@ jobs:
       steps:
       - name: git clone webapp repo
         uses: actions/checkout@v1
+        
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     
-      - name: deploy webapp
-        run: |
-            sudo docker build .
-            docker push frame0310/webapp:tagname
-      
-      
+      - name: build and push webapp
+        uses: docker/build-push-action@v1
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webapp:latest
