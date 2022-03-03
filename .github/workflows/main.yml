@@ -25,5 +25,5 @@ jobs:
           pip3 install flake8
           
       - name: run flake8 test code
-        run: flake8 --version
+        run: flake8 .
       
