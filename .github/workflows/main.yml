@@ -25,5 +25,5 @@ jobs:
           
 
       - name: run flake8 test code
-        run: flake8 .
+        run: flake8 --version
       
