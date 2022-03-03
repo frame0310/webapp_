@@ -40,8 +40,7 @@ jobs:
        
         - name: install_pckg
           run : |
-            python -m pip3 install --upgrade pip
-            pip3 install Flask
+              pip3 install Flask
                            
         - name: deploy webapp
           run: sudo docker build .
