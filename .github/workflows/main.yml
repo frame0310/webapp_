@@ -22,8 +22,8 @@ jobs:
       - name: install pckg
         run: |
           pip3 install Flask
+          pip3 install flake8
           
-
       - name: run flake8 test code
         run: flake8 --version
       
