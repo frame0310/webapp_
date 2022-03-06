@@ -6,7 +6,9 @@ name: webapp-test-dev
 on:
   push:
     branches:
-      - main
+       - '!main'
+  
+       
 
 jobs:
   testcode:
