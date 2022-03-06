@@ -6,7 +6,8 @@ name: webapp-test-dev
 on:
   push:
     branches:
-      - main
+       - 'main'
+             
 
 jobs:
   testcode:
@@ -24,30 +25,12 @@ jobs:
           pip3 install Flask
           pip3 install flake8
           
-      #- name: run flake8 test code
-      #  run: flake8 .
+      - name: run flake8 test code
+        run: flake8 .
 
-  build_webapp:
+  push_build_webapp_to_dockerHub:
     runs-on: ubuntu-latest
-    needs: [testcode]
-    steps:
-        - uses: actions/checkout@v1 #copy repo
-
-        - name: install python
-          uses: actions/setup-python@v2 #install python
-          with:
-            python-version: 3.9
-       
-        - name: install_pckg
-          run : |
-              pip3 install Flask
-                           
-        - name: deploy webapp
-          run: sudo docker build .
-
-  push_webapp_to_dockerHub:
-    runs-on: ubuntu-latest
-    needs: [build_webapp]
+    
     steps:
         - name: git clone webapp repo
           uses: actions/checkout@v2
