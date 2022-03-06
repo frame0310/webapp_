@@ -1,0 +1,48 @@
+#Github Action ryka-lico proba
+#
+#-------------------------------
+name: webapp-test-dev
+
+on:
+  push:
+    branches:
+       - 'main'
+             
+
+jobs:
+  testcode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1 #copy repo
+
+      - name: install python
+        uses: actions/setup-python@v2 #install python
+        with:
+          python-version: 3.9
+      
+      - name: install pckg
+        run: |
+          pip3 install Flask
+          pip3 install flake8
+          
+      - name: run flake8 test code
+        run: flake8 .
+
+  push_build_webapp_to_dockerHub:
+    runs-on: ubuntu-latest
+    
+    steps:
+        - name: git clone webapp repo
+          uses: actions/checkout@v2
+        
+        - name: Login to DockerHub
+          uses: docker/login-action@v1
+          with:
+            username: ${{ secrets.DOCKER_HUB_USERNAME }}
+            password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+    
+        - name: build and push webapp
+          uses: docker/build-push-action@v2
+          with:
+            push: true
+            tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webapp:latest 

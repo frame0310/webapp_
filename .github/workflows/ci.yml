@@ -47,22 +47,3 @@ jobs:
                            
         - name: deploy webapp
           run: sudo docker build .
-
-  push_webapp_to_dockerHub:
-    runs-on: ubuntu-latest
-    needs: [build_webapp]
-    steps:
-        - name: git clone webapp repo
-          uses: actions/checkout@v2
-        
-        - name: Login to DockerHub
-          uses: docker/login-action@v1
-          with:
-            username: ${{ secrets.DOCKER_HUB_USERNAME }}
-            password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-    
-        - name: build and push webapp
-          uses: docker/build-push-action@v2
-          with:
-            push: true
-            tags: ${{ secrets.DOCKER_HUB_USERNAME }}/webapp:latest 
