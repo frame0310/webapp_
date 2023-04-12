@@ -3,11 +3,14 @@
 #-------------------------------
 name: webapp-test-dev
 
-on:
+on: 
   push:
     branches:
        - '!main'
        - '**'
+  pull_request:
+    branches:
+       - '!main' 
   
        
 
